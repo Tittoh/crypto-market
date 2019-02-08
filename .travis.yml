@@ -9,6 +9,6 @@ script:
   - npm test -- --coverage
   - npm build
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT 
+  - nyc report --reporter=text-lcov | coveralls
 notifications:
   email: false

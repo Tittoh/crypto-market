@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/Tittoh/crypto-market.svg?branch=master)](https://travis-ci.com/Tittoh/crypto-market)  [![Coverage Status](https://coveralls.io/repos/github/Tittoh/crypto-market/badge.svg?branch=master)](https://coveralls.io/github/Tittoh/crypto-market?branch=master)  [![Maintainability](https://api.codeclimate.com/v1/badges/9f69a7a0b082a4dcd3f7/maintainability)](https://codeclimate.com/github/Tittoh/crypto-market/maintainability)
+
 # crypto-market
 Crypto coin market UI
 
