@@ -1,9 +1,12 @@
 import React from 'react'
+import CoinsTable from '../../components/CoinsTable'
 
 class Home extends React.Component {
   render() {
     return (
-      <h1>Home</h1>
+      <React.Fragment>
+        <CoinsTable />
+      </React.Fragment>
     )
   }
 }
