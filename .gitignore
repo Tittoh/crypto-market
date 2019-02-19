@@ -24,3 +24,6 @@ yarn-error.log*
 
 #VS Code files
 .vscode/
+
+#Environment files
+.env
