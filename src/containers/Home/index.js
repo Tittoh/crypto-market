@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import CoinsTable from '../../components/CoinsTable'
-import { Card } from 'react-materialize'
+import { Card, Table } from 'react-materialize'
 
 import fetchTopTen from './actions';
 
@@ -27,8 +27,20 @@ class Home extends Component {
     const { isFetching, success } = this.props.coins;
     if (success && !isFetching) {
       return (
-        <Card className="max-width">
-          <ul className="collection">{this.renderCoins()}</ul>
+        <Card className="container center-align">
+          <Table className="top-coins bordered hoverable">
+            <thead>
+              <tr>
+                <th data-field="icon" className="icon"></th>
+                <th data-field="name">Name</th>
+                <th data-field="name">Price(USD)</th>
+                <th data-field="name">Total Volume</th>
+                <th data-field="price">Mkt Cap</th>
+
+              </tr>
+            </thead>
+            {this.renderCoins()}
+          </Table>
         </Card>
       )
     } else {

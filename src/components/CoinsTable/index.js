@@ -1,16 +1,25 @@
 import React from 'react';
 
+
 const CoinsTable = ({ coin }) =>{
-  const imgLink = `https://www.cryptocompare.com${coin.CoinInfo.ImageUrl}`
+  const {
+    IMAGEURL,
+    FULLNAME,
+    NAME,
+    PRICE,
+    TOTALVOLUME24HTO,
+    MKTCAP} = coin.DISPLAY.USD
+  const imgLink = `https://www.cryptocompare.com${IMAGEURL}`
   return (
-    <li className="collection-item avatar">
-      <img src={imgLink} alt="icon" className="circle" />
-      <span className="title">{coin.CoinInfo.FullName}</span>
-      <p>{coin.CoinInfo.Name}
-        {coin.RAW.USD.PRICE}
-      </p>
-      <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a>
-    </li>
+    <tbody>
+      <tr>
+        <td  className="icon"><img src={imgLink} alt="icon" className="circle" /></td>
+        <td>{FULLNAME}<br />{NAME}</td>
+        <td>{PRICE}</td>
+        <td>{TOTALVOLUME24HTO}</td>
+        <td>{MKTCAP}</td>
+      </tr>
+    </tbody>
   )
 };
 export default CoinsTable;

@@ -6,6 +6,7 @@ import {
   Provider
 } from 'react-redux';
 import Nav from './components/Navbar'
+import Footer from './components/Footer'
 import Home from './containers/Home'
 import configStore from './store'
 
@@ -19,6 +20,7 @@ export default () => (
         <Route exact path="/" component={Home} />
       </Switch>
     </Router>
+    <Footer />
   </Provider>
   
 );
