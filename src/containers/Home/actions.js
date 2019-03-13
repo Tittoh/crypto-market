@@ -18,7 +18,6 @@ export const topTenFetchFailure = errors => ({
 
 
 const fetchTopTen = () => (dispatch) => {
-  console.log("getting dispatched")
   dispatch(topTenFetch())
   return api({
     method: 'GET',
