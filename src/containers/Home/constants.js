@@ -1,2 +1,4 @@
-export const GREET = 'GREET';
+export const FETCH_TOP_10_SUCCESS = 'FETCH_TOP_10_SUCCESS';
+export const FETCH_TOP_10_REQUEST = 'FETCH_TOP_10_REQUEST'
+export const FETCH_TOP_10_FAILURE = 'FETCH_TOP_10_FAILURE';
 export const HELLO = 'HELLO';

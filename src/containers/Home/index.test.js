@@ -1,9 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';;
 import Home from './index';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render( < Home /> , div);
-  ReactDOM.unmountComponentAtNode(div);
+  const wrapper = shallow( <Home />);
+  expect(wrapper.find('.max-width').length).toEqual(0);
 });

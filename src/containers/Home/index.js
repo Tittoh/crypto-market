@@ -1,40 +1,88 @@
-import { bindActionCreators } from 'redux';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import CoinsTable from '../../components/CoinsTable'
+import { Card, Table } from 'react-materialize'
 
-import sayHi from './actions';
+import fetchTopTen from './actions';
 
 class Home extends Component {
+  static defaultProps = {
+    results: [],
+  };
+
   componentDidMount() {
-    this.props.sayHi();
+    this.props.fetchTopCoins();
   }
+
+  renderCoins = () => {
+    const results = this.props.coins.payload.Data;
+    return results.map((coin, index) => (
+      <CoinsTable coin={coin} key={index} />
+      ));
+  }
+
   render() {
-    const { message } = this.props
-    return (
-      <React.Fragment>
-        <h5>{message}</h5>
-        <CoinsTable />
-      </React.Fragment>
-    )
+    const { isFetching, success } = this.props.coins;
+    if (success && !isFetching) {
+      return (
+        <Card className="container center-align">
+          <Table className="top-coins bordered hoverable">
+            <thead>
+              <tr>
+                <th data-field="icon" className="icon"></th>
+                <th data-field="name">Name</th>
+                <th data-field="name">Price(USD)</th>
+                <th data-field="name">Total Volume</th>
+                <th data-field="price">Mkt Cap</th>
+
+              </tr>
+            </thead>
+            {this.renderCoins()}
+          </Table>
+        </Card>
+      )
+    } else {
+      return (
+        <Card className="max-width center-align">
+        <div className="preloader-wrapper big active">
+          <div className="spinner-layer spinner-blue-only">
+            <div className="circle-clipper left">
+              <div className="circle"></div>
+            </div><div className="gap-patch">
+              <div className="circle"></div>
+            </div><div className="circle-clipper right">
+              <div className="circle"></div>
+            </div>
+          </div>
+        </div>
+        </Card>
+      )
+    }
   }
 }
 
 Home.propTypes = {
-  message: PropTypes.string,
-  sayHi: PropTypes.func.isRequired,
+  coins: PropTypes.shape({
+    isFetching: PropTypes.bool.isRequired,
+    success: PropTypes.bool.isRequired,
+    payload: PropTypes.object.isRequired,
+    errors: PropTypes.object,
+  }).isRequired,
+  fetchTopCoins: PropTypes.func.isRequired,
 };
 
-Home.defaultProps = {
-  message: 'Hello',
-};
-
-const mapStateToProps = state => ({
-  message: state.message.greetings,
+const mapStateToProps = ({coins}) => ({
+  coins,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ sayHi }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    fetchTopCoins: fetchTopTen,
+  },
+  dispatch,
+);
 
 export default connect(
   mapStateToProps,

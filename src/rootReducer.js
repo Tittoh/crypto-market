@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import message from './containers/Home/reducer';
+import coins from './containers/Home/reducer';
 
-const rootReducer = combineReducers({ message });
+const rootReducer = combineReducers({ coins });
 
 export default rootReducer;
